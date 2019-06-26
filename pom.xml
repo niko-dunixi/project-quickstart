@@ -8,7 +8,7 @@
 
     <packaging>maven-archetype</packaging>
 
-    <description>A simple archetype for generating LWJGL projects quickly</description>
+    <description>A simple archetype for generating modern java applications</description>
     <url>https://github.com/paul-nelson-baker/project-quickstart</url>
 
     <scm>
@@ -37,7 +37,7 @@
             </roles>
         </developer>
     </developers>
-    
+
     <build>
         <extensions>
             <extension>
