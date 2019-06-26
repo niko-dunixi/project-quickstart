@@ -1,16 +1,16 @@
 package ${package};
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test for simple Application.
  */
 public class ApplicationTest {
 
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void testApplication() {
+        assertTrue( false );
     }
 }
