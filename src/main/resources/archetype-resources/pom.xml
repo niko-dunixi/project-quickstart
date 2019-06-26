@@ -55,6 +55,7 @@
     <build>
         <plugins>
             <plugin>
+                <!-- Automatically formats code based on Google standards with every git commit -->
                 <groupId>com.cosium.code</groupId>
                 <artifactId>maven-git-code-format</artifactId>
                 <version>1.25</version>
