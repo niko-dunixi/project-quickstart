@@ -3,8 +3,15 @@ import java.nio.file.Paths
 dir = Paths.get(request.getOutputDirectory(), request.getArtifactId()).toFile()
 
 def run(String... cmd) {
-//    println ' -> ' + cmd
+    try {
+        mustRun(cmd)
+    } catch (Exception ignored) {
+    }
+}
+
+def mustRun(String... cmd) {
     def process = cmd.execute(null, dir)
+//    println ' -> ' + cmd
 //    def outputBuilder = new StringBuilder()
 //    process.waitForProcessOutput(outputBuilder, System.err)
 //    String output = outputBuilder.toString()
@@ -22,16 +29,16 @@ def run(String... cmd) {
 
 
 // Make project portable.
-run("mvn", "-N", "io.takari:maven:wrapper")
-//run("./mvnw sortpom:sort")
-//run("./mvnw license:update-file-header@config")
-//run("./mvnw license:update-file-header@sources")
-//run("./mvnw fmt:format")
+mustRun("mvn", "-N", "io.takari:maven:wrapper")
+
+// Update the .gitignore if possible, but don't fail if the curl fails
+run("curl", "https://www.gitignore.io/api/vim,osx,linux,emacs,nanoc,eclipse,windows,intellij,jetbrains,sublimetext,intellij+iml,intellij+all,jetbrains+iml,jetbrains+all,microsoftoffice,exercism,visualstudio,visualstudiocode,openframeworks+visualstudio,serverless,java,java-web,code-java",
+    "-o", ".gitignore")
 
 // Now we need to initialize and create all the git version control stuff
-run("git", "init", ".")
-run("git", "add", ".")
+mustRun("git", "init", ".")
+mustRun("git", "add", ".")
 String commitMessage = "Initial commit\n" +
         "Generated via mvn archetype:generate -DarchetypeGroupId=io.paulbaker.archetypes -DarchetypeArtifactId=project-quickstart\n" +
         "Report issues: https://github.com/paul-nelson-baker/project-quickstart"
-run("git", "commit", "-am", commitMessage)
+mustRun("git", "commit", "-am", commitMessage)
