@@ -11,6 +11,6 @@ public class ApplicationTest {
 
     @Test
     public void testApplication() {
-        assertTrue( false );
+        fail("TDD Dictates you must have a failing test before you write any new code");
     }
 }
